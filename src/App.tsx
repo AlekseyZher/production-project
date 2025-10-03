@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Suspense } from "react";
 import "./styles/index.scss";
-import { AboutPageAsync } from "./Pages/AboutPage/AboutPage.async";
-import { MainPageAsync } from "./Pages/MainPage/MainPage.async";
 import { useTheme } from "./theme/useTheme";
 import { classNames } from "./helpers/classNames/classNames";
+import { AboutPage } from "pages/AboutPage";
+import { MainPage } from "pages/MainPage";
 
 export enum Theme {
   LIGHT = "light",
@@ -22,8 +22,8 @@ const App = () => {
       <Link to={"/about"}>AboutPage</Link>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path={"/about"} element={<AboutPageAsync />} />
-          <Route path={"/"} element={<MainPageAsync />} />
+          <Route path={"/about"} element={<AboutPage />} />
+          <Route path={"/"} element={<MainPage />} />
         </Routes>
       </Suspense>
     </div>
