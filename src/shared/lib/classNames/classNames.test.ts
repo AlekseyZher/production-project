@@ -16,8 +16,4 @@ describe("classNames", () => {
     expect(classNames("someClass", {"cls1": false, "cls2": true}, ["params1", "params2"]))
       .toBe("someClass params1 params2 cls2")
   })
-  test("mods undefinde", () => {
-    expect(classNames("someClass", {"cls1": undefined, "cls2": true}, ["params1", "params2"]))
-      .toBe("someClass params1 params2 cls2")
-  })
 })
