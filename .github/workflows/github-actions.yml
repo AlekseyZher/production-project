@@ -2,25 +2,31 @@ name: Linting, testing, building
 on:
   push:
     branches: [main]
-  pull_request: 
+  pull_request:
     branches: [main]
+
 jobs:
-  pipline:
+  pipeline:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [24.x]
-  steps:
-    uses: actions/checkout@v5
-    -name: Set up Node.js ${{ matrix.node-version }}
-    uses: actions/setup-node@v3
-    with:
-      node-version: ${{ matrix.node-version }}
-    -name: install modules
-    run: npm install
-    -name: build project
-    run: npm run build:prod
-    -name: linting typescript
-    run: npm run lint:ts
-    -name: unit testing
-    run: npm run unit
+    steps:
+      - uses: actions/checkout@v5
+      
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build project
+        run: npm run build:prod
+        
+      - name: Lint TypeScript
+        run: npm run lint:ts
+        
+      - name: Unit testing
+        run: npm run unit
